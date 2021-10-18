@@ -12,7 +12,7 @@ _settings = Settings()
 clock = pygame.time.Clock()
 _snake = snake.Snake()
 
-dis = pygame.display.set_mode((_settings.Display_Width, _settings.Display_Height))
+_surface = pygame.display.set_mode((_settings.Display_Width, _settings.Display_Height))
 pygame.display.set_caption('Snake game by pmash')
 
 
@@ -30,9 +30,9 @@ def gameLoop():
     while not game_over:
 
         while game_close == True:
-            dis.fill(MyColors.Light_Blue)
-            utilities.display_message("You Lost! Press Q-Quit or C-Play Again", MyColors.Red, dis, _settings)
-            utilities.display_score(_snake.Length - 1, _settings.Score_Font, dis)
+            _surface.fill(MyColors.Light_Blue)
+            utilities.display_message("You Lost! Press Q-Quit or C-Play Again", MyColors.Red, _surface, _settings)
+            utilities.display_score(_snake.Length - 1, _settings.Score_Font, _surface)
             pygame.display.update()
 
             for event in pygame.event.get():
@@ -68,16 +68,16 @@ def gameLoop():
 
         x1 += x1_change
         y1 += y1_change
-        dis.fill(MyColors.Light_Blue)
-        pygame.draw.rect(dis, MyColors.Green, [food_coord[0], food_coord[1], _settings.Snake_Block_Size, _settings.Snake_Block_Size])
+        _surface.fill(MyColors.Light_Blue)
+        pygame.draw.rect(_surface, MyColors.Green, [food_coord[0], food_coord[1], _settings.Snake_Block_Size, _settings.Snake_Block_Size])
 
         _snake.add_node(x1, y1)
 
         if _snake.collided_with_self(x1, y1):
             game_close = True
 
-        _snake.draw(dis, _settings)
-        utilities.display_score(_snake.Length - 1, _settings.Score_Font, dis)
+        _snake.draw(_surface, _settings)
+        utilities.display_score(_snake.Length - 1, _settings.Score_Font, _surface)
 
         pygame.display.update()
 
