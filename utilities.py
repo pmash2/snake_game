@@ -19,3 +19,8 @@ def get_food_coord(_settings):
     coord.append(round(random.randrange(0, _settings.Display_Width - _settings.Snake_Block_Size) / 10.0) * 10.0)
     coord.append(round(random.randrange(0, _settings.Display_Height - _settings.Snake_Block_Size) / 10.0) * 10.0)
     return coord
+
+def player_out_of_bounds(x, y, _settings):
+    if x >= _settings.Display_Width or x < 0 or y >= _settings.Display_Height or y < 0:
+        return True
+    return False

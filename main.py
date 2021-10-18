@@ -63,7 +63,7 @@ def gameLoop():
                     x1_change = 0
                     y1_change = _settings.Snake_Block_Size
 
-        if x1 >= _settings.Display_Width or x1 < 0 or y1 >= _settings.Display_Height or y1 < 0:
+        if utilities.player_out_of_bounds(x1, y1, _settings):
             game_close = True
 
         x1 += x1_change
