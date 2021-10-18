@@ -9,6 +9,7 @@ color_white = (255, 255, 255)
 color_black = (0, 0, 0)
 color_red = (255, 0, 0)
 color_blue = (0, 0, 255)
+snake_block = 10
 
 display_height = 800
 display_width = 600
@@ -24,6 +25,7 @@ x1_change = 0
 y1_change = 0
 
 clock = pygame.time.Clock()
+snake_speed = 30
 
 print(f"K_LEFT: {pygame.K_LEFT}")
 print(f"K_RIGHT: {pygame.K_RIGHT}")
@@ -69,10 +71,10 @@ while not game_over:
     x1 += x1_change
     y1 += y1_change
     dis.fill(color_white)
-    pygame.draw.rect(dis, color_blue, [x1, y1, 10, 10])
+    pygame.draw.rect(dis, color_blue, [x1, y1, snake_block, snake_block])
 
     pygame.display.update()
-    clock.tick(30)
+    clock.tick(snake_speed)
 
 message("You lost", color_red)
 pygame.display.update()
