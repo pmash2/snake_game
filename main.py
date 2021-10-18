@@ -73,9 +73,6 @@ def gameLoop():
 
         _snake.add_node(x1, y1)
 
-        if len(_snake.Nodes) > _snake.Length:
-            del _snake.Nodes[0]
-
         if _snake.collided_with_self(x1, y1):
             game_close = True
 

@@ -18,6 +18,9 @@ class Snake:
         node = self.make_node(x, y)
         self.Nodes.append(node)
 
+        if len(self.Nodes) > self.Length:
+            del self.Nodes[0]
+
     # BUG: This is not working right...
     def collided_with_self(self, x: int, y: int):
         currentNode = self.make_node(x, y)
