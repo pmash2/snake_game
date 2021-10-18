@@ -1,4 +1,5 @@
 import pygame
+import time
 
 # https://www.edureka.co/blog/snake-game-with-pygame/
 
@@ -9,14 +10,16 @@ color_black = (0, 0, 0)
 color_red = (255, 0, 0)
 color_blue = (0, 0, 255)
 
-dis = pygame.display.set_mode((400, 300))
+display_height = 800
+display_width = 600
+
+dis = pygame.display.set_mode((display_width, display_height))
 pygame.display.set_caption('Snake game by pmash')
-# pygame.display.update()
 
 game_over = False
 
-x1 = 300
-y1 = 300
+x1 = display_width / 2
+y1 = display_height / 2
 x1_change = 0
 y1_change = 0
 
@@ -26,6 +29,14 @@ print(f"K_LEFT: {pygame.K_LEFT}")
 print(f"K_RIGHT: {pygame.K_RIGHT}")
 print(f"K_UP: {pygame.K_UP}")
 print(f"K_DOWN: {pygame.K_DOWN}")
+
+font_style = pygame.font.SysFont(None, 50)
+
+
+def message(msg, color):
+    _message = font_style.render(msg, True, color)
+    dis.blit(_message, [display_width / 2, display_height / 2])
+
 
 while not game_over:
     for event in pygame.event.get():
@@ -52,6 +63,9 @@ while not game_over:
                 x1_change = 0
                 y1_change = 10
 
+    if x1 >= display_width or x1 < 0 or y1 >= display_height or y1 < 0:
+        game_over = True
+
     x1 += x1_change
     y1 += y1_change
     dis.fill(color_white)
@@ -60,6 +74,9 @@ while not game_over:
     pygame.display.update()
     clock.tick(30)
 
+message("You lost", color_red)
+pygame.display.update()
+time.sleep(2)
 
 pygame.quit()
 quit()
