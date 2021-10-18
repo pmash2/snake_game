@@ -1,10 +1,11 @@
 from typing import List
 import pygame
 from colors import Colors as MyColors
+from game_settings import Settings
 
 
 class Snake:
-    Nodes: List[str]
+    Nodes: List[int]
     Length: int
     Speed: int
 
@@ -13,12 +14,12 @@ class Snake:
         self.Length = 1
         self.Speed = 15
 
-    def add_node(self, x, y):
+    def add_node(self, x: int, y: int):
         node = self.make_node(x, y)
         self.Nodes.append(node)
 
     # BUG: This is not working right...
-    def collided_with_self(self, x, y):
+    def collided_with_self(self, x: int, y: int):
         currentNode = self.make_node(x, y)
 
         # Everything but the last item in the list
@@ -28,12 +29,12 @@ class Snake:
                 return True
             return False
 
-    def draw(self, _surface, _settings):
+    def draw(self, _surface: pygame.Surface, _settings: Settings):
         snake_block = _settings.Snake_Block_Size
         for coord in self.Nodes:
             pygame.draw.rect(_surface, MyColors.Blue, [int(coord[0]), int(coord[1]), snake_block, snake_block])
 
-    def make_node(x, y):
+    def make_node(self, x: int, y: int):
         node = []
         node.append(x)
         node.append(y)

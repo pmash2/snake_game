@@ -20,8 +20,8 @@ def gameLoop():
     game_over = False
     game_close = False
 
-    x1 = _settings.Display_Width / 2
-    y1 = _settings.Display_Height / 2
+    x1 = int(_settings.Display_Width / 2)
+    y1 = int(_settings.Display_Height / 2)
     x1_change = 0
     y1_change = 0
 
