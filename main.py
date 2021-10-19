@@ -4,6 +4,7 @@ from game_settings import Settings
 import utilities
 import snake
 import controls
+import food
 
 # https://www.edureka.co/blog/snake-game-with-pygame/
 
@@ -12,6 +13,7 @@ pygame.init()
 _settings = Settings()
 clock = pygame.time.Clock()
 _snake = snake.Snake()
+_food = food.Food(_settings.Display_Height, _settings.Display_Width, _settings.Snake_Block_Size)
 
 _surface = pygame.display.set_mode((_settings.Display_Width, _settings.Display_Height))
 pygame.display.set_caption('Snake game by pmash')
@@ -25,8 +27,6 @@ def gameLoop():
     y1 = int(_settings.Display_Height / 2)
     x1_change = 0
     y1_change = 0
-
-    food_coord = utilities.get_food_coord(_settings)
 
     while not game_over:
 
@@ -59,7 +59,7 @@ def gameLoop():
         x1 += x1_change
         y1 += y1_change
         _surface.fill(MyColors.Light_Blue)
-        pygame.draw.rect(_surface, MyColors.Green, [food_coord[0], food_coord[1], _settings.Snake_Block_Size, _settings.Snake_Block_Size])
+        _food.draw(_surface, _settings.Snake_Block_Size)
 
         _snake.add_node(x1, y1)
 
@@ -71,8 +71,8 @@ def gameLoop():
 
         pygame.display.update()
 
-        if x1 == food_coord[0] and y1 == food_coord[1]:
-            food_coord = utilities.get_food_coord(_settings)
+        if x1 == _food.Coordinate[0] and y1 == _food.Coordinate[1]:
+            _food.set_coordinate(_settings.Display_Height, _settings.Display_Width, _settings.Snake_Block_Size)
             _snake.eat_food()
 
         clock.tick(_snake.Speed)
