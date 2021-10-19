@@ -70,7 +70,8 @@ def gameLoop():
 
         pygame.display.update()
 
-        if x1 == _food.Coordinate[0] and y1 == _food.Coordinate[1]:
+        snake_head = [x1, y1]
+        if snake_head == _food.Coordinate:
             _food.set_coordinate(_settings.Display_Height, _settings.Display_Width, _settings.Snake_Block_Size)
             _snake.eat_food()
 
