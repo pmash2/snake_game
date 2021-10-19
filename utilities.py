@@ -1,4 +1,3 @@
-from typing import Set
 from colors import Colors as MyColors
 import random
 import pygame
