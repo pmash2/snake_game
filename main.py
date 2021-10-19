@@ -3,6 +3,7 @@ from colors import Colors as MyColors
 from game_settings import Settings
 import utilities
 import snake
+import controls
 
 # https://www.edureka.co/blog/snake-game-with-pygame/
 
@@ -50,18 +51,7 @@ def gameLoop():
                 game_over = True
 
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
-                    x1_change = -_settings.Snake_Block_Size
-                    y1_change = 0
-                elif event.key == pygame.K_RIGHT:
-                    x1_change = _settings.Snake_Block_Size
-                    y1_change = 0
-                elif event.key == pygame.K_UP:
-                    x1_change = 0
-                    y1_change = -_settings.Snake_Block_Size
-                elif event.key == pygame.K_DOWN:
-                    x1_change = 0
-                    y1_change = _settings.Snake_Block_Size
+                x1_change, y1_change = controls.handle_control(event.key, _settings.Snake_Block_Size)
 
         if utilities.player_out_of_bounds(x1, y1, _settings):
             game_close = True
