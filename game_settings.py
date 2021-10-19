@@ -8,4 +8,4 @@ class Settings:
 
     def __init__(self) -> None:
         self.Score_Font = pygame.font.SysFont("comicsansms", 35)
-        self.Status_Font = pygame.font.SysFont(None, 50)
+        self.Status_Font = pygame.font.SysFont("bahnschrift", 25)

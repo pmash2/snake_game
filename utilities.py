@@ -13,7 +13,7 @@ def display_score(score: int, _font: pygame.font.SysFont, _surface: pygame.Surfa
 def display_message(msg: str, color: MyColors, _surface: pygame.Surface, _settings: Settings):
     _message = _settings.Status_Font.render(msg, True, color)
 
-    _surface.blit(_message, [_settings.Display_Width / 2, _settings.Display_Height / 2])
+    _surface.blit(_message, [_settings.Display_Width / 6, _settings.Display_Height / 3])
 
 
 def get_food_coord(_settings: Settings):
