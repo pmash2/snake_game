@@ -1,5 +1,4 @@
 import pygame
-from colors import Colors as MyColors
 from game_settings import Settings
 import utilities
 import snake
@@ -31,8 +30,8 @@ def gameLoop():
     while not game_over:
 
         while game_close == True:
-            _surface.fill(MyColors.Light_Blue)
-            utilities.display_message("You Lost! Press Q-Quit or C-Play Again", MyColors.Red, _surface, _settings)
+            _surface.fill(pygame.Color('lightsteelblue'))
+            utilities.display_message("You Lost! Press Q-Quit or C-Play Again", pygame.Color('red'), _surface, _settings)
             utilities.display_score(_snake.Length - 1, _settings.Score_Font, _surface)
             pygame.display.update()
 
@@ -58,7 +57,7 @@ def gameLoop():
 
         x1 += x1_change
         y1 += y1_change
-        _surface.fill(MyColors.Light_Blue)
+        _surface.fill(pygame.Color('lightsteelblue'))
         _food.draw(_surface, _settings.Snake_Block_Size)
 
         _snake.add_node(x1, y1)

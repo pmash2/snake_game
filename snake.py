@@ -1,6 +1,5 @@
 from typing import List
 import pygame
-from colors import Colors as MyColors
 from game_settings import Settings
 
 
@@ -38,7 +37,7 @@ class Snake:
     def draw(self, _surface: pygame.Surface, _settings: Settings):
         snake_block = _settings.Snake_Block_Size
         for coord in self.Nodes:
-            pygame.draw.rect(_surface, MyColors.Blue, [int(coord[0]), int(coord[1]), snake_block, snake_block])
+            pygame.draw.rect(_surface, pygame.Color('blue'), [int(coord[0]), int(coord[1]), snake_block, snake_block])
 
     def make_node(self, x: int, y: int):
         node = []

@@ -1,6 +1,5 @@
 import random
 import pygame
-from colors import Colors as MyColors
 from typing import List
 
 
@@ -19,4 +18,4 @@ class Food:
         self.Coordinate = coord
 
     def draw(self, _surface: pygame.Surface, block_size: int):
-        pygame.draw.rect(_surface, MyColors.Green, [self.Coordinate[0], self.Coordinate[1], block_size, block_size])
+        pygame.draw.rect(_surface, pygame.Color('green'), [self.Coordinate[0], self.Coordinate[1], block_size, block_size])
