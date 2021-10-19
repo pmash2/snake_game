@@ -8,14 +8,14 @@ import food
 # https://www.edureka.co/blog/snake-game-with-pygame/
 
 pygame.init()
+pygame.display.set_caption('Snake game by pmash')
 
 _settings = Settings()
 clock = pygame.time.Clock()
 _snake = snake.Snake()
 _food = food.Food(_settings.Display_Height, _settings.Display_Width, _settings.Snake_Block_Size)
-
+_background_color = pygame.Color('lightsteelblue')
 _surface = pygame.display.set_mode((_settings.Display_Width, _settings.Display_Height))
-pygame.display.set_caption('Snake game by pmash')
 
 
 def gameLoop():
@@ -30,7 +30,7 @@ def gameLoop():
     while not game_over:
 
         while game_close == True:
-            _surface.fill(pygame.Color('lightsteelblue'))
+            _surface.fill(_background_color)
             utilities.display_message("You Lost! Press Q-Quit or C-Play Again", pygame.Color('red'), _surface, _settings)
             utilities.display_score(_snake.Length - 1, _settings.Score_Font, _surface)
             pygame.display.update()
@@ -45,7 +45,6 @@ def gameLoop():
                         gameLoop()
 
         for event in pygame.event.get():
-
             if event.type == pygame.QUIT:
                 game_over = True
 
@@ -57,28 +56,29 @@ def gameLoop():
 
         x1 += x1_change
         y1 += y1_change
-        _surface.fill(pygame.Color('lightsteelblue'))
-        _food.draw(_surface, _settings.Snake_Block_Size)
-
         _snake.add_node(x1, y1)
 
         if _snake.collided_with_self(x1, y1):
             game_close = True
 
-        _snake.draw(_surface, _settings)
-        utilities.display_score(_snake.Length - 1, _settings.Score_Font, _surface)
+        refresh_game(_surface, _snake, _food)
 
-        pygame.display.update()
-
-        snake_head = [x1, y1]
-        if snake_head == _food.Coordinate:
-            _food.set_coordinate(_settings.Display_Height, _settings.Display_Width, _settings.Snake_Block_Size)
+        if [x1, y1] == _food.Coordinate:
             _snake.eat_food()
+            _food.set_coordinate(_settings.Display_Height, _settings.Display_Width, _settings.Snake_Block_Size)
 
         clock.tick(_snake.Speed)
 
     pygame.quit()
     quit()
+
+
+def refresh_game(_surface: pygame.Surface, _snake: snake.Snake, _food: food.Food) :
+    _surface.fill(_background_color)
+    _food.draw(_surface, _settings.Snake_Block_Size)
+    _snake.draw(_surface, _settings)
+    utilities.display_score(_snake.Length - 1, _settings.Score_Font, _surface)
+    pygame.display.update()
 
 
 gameLoop()
