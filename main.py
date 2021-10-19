@@ -83,7 +83,7 @@ def gameLoop():
 
         if x1 == food_coord[0] and y1 == food_coord[1]:
             food_coord = utilities.get_food_coord(_settings)
-            _snake.Length += 1
+            _snake.eat_food()
 
         clock.tick(_snake.Speed)
 

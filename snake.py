@@ -32,6 +32,10 @@ class Snake:
                 return True
             return False
 
+    def eat_food(self):
+        self.Length += 1
+
+
     def draw(self, _surface: pygame.Surface, _settings: Settings):
         snake_block = _settings.Snake_Block_Size
         for coord in self.Nodes:
