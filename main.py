@@ -5,6 +5,13 @@ import snake
 import controls
 import food
 
+from pygame.locals import (
+    KEYDOWN,
+    QUIT,
+    K_q,
+    K_c
+)
+
 # https://www.edureka.co/blog/snake-game-with-pygame/
 
 pygame.init()
@@ -36,19 +43,19 @@ def gameLoop():
             pygame.display.update()
 
             for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_q:
+                if event.type == KEYDOWN:
+                    if event.key == K_q:
                         game_over = True
                         game_close = False
-                    if event.key == pygame.K_c:
+                    if event.key == K_c:
                         _snake.__init__()
                         gameLoop()
 
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if event.type == QUIT:
                 game_over = True
 
-            if event.type == pygame.KEYDOWN:
+            if event.type == KEYDOWN:
                 x1_change, y1_change = controls.handle_control(event.key, _settings.Snake_Block_Size)
 
         if utilities.player_out_of_bounds(x1, y1, _settings):
